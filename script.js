@@ -1,25 +1,21 @@
 // Liste des produits (modifie ici pour ajouter tes propres produits)
 const produits = [
   { id: 1, nom: "Sérum Éclat Vitamine C", categorie: "soin", prix: 24.9, icone: "🍊", couleur: "#fff1e0", description: "Illumine le teint et atténue les taches." },
-  { id: 2, nom: "Crème Hydratante Rose", categorie: "soin", prix: 19.5, icone: "🌹", couleur: "#fde4ea", description: "Hydratation 24 h pour peaux sèches." },
-  { id: 3, nom: "Nettoyant Doux Aloe", categorie: "soin", prix: 12.0, icone: "🌿", couleur: "#e6f5e9", description: "Démaquille et purifie en douceur." },
-  { id: 4, nom: "Rouge à Lèvres Velours", categorie: "maquillage", prix: 15.9, icone: "💄", couleur: "#fbe0e6", description: "Fini mat, tenue longue durée." },
-  { id: 5, nom: "Mascara Volume Intense", categorie: "maquillage", prix: 13.5, icone: "👁️", couleur: "#ece6f6", description: "Cils allongés et recourbés." },
-  { id: 6, nom: "Palette Ombres Nude", categorie: "maquillage", prix: 29.0, icone: "🎨", couleur: "#f6ebe1", description: "12 teintes douces et lumineuses." },
-  { id: 7, nom: "Eau de Parfum Fleur d'Oranger", categorie: "parfum", prix: 49.0, icone: "🌸", couleur: "#fdf0f5", description: "Note florale fraîche et élégante." },
-  { id: 8, nom: "Parfum Vanille Ambrée", categorie: "parfum", prix: 54.9, icone: "✨", couleur: "#fbf3df", description: "Sillage chaud et gourmand." },
-  { id: 9, nom: "Huile Sèche Corps", categorie: "corps", prix: 21.0, icone: "💧", couleur: "#e3f1fa", description: "Nourrit et satine la peau." },
-  { id: 10, nom: "Shampooing Karité", categorie: "corps", prix: 9.9, icone: "🧴", couleur: "#f5efe4", description: "Répare les cheveux abîmés." },
+  { id: 2, nom: "Rouge à Lèvres Velours", categorie: "maquillage", prix: 15.9, icone: "💄", couleur: "#fbe0e6", description: "Fini mat, tenue longue durée." },
+  { id: 3, nom: "Eau de Parfum Fleur d'Oranger", categorie: "parfum", prix: 49.0, icone: "🌸", couleur: "#fdf0f5", description: "Note florale fraîche et élégante." },
 ];
 
 const nomsCategories = {
   soin: "Soins visage",
   maquillage: "Maquillage",
   parfum: "Parfums",
-  corps: "Corps & cheveux",
 };
 
 let panier = JSON.parse(localStorage.getItem("panier") || "{}");
+// Retire du panier les produits qui n'existent plus
+for (const id in panier) {
+  if (!produits.some((p) => p.id === Number(id))) delete panier[id];
+}
 
 const grille = document.getElementById("grille");
 const panierListe = document.getElementById("panierListe");
