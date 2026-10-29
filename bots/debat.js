@@ -13,8 +13,23 @@ if (fs.existsSync(fichierEnv)) {
   }
 }
 
-const CLE = process.env.OPENAI_API_KEY;
-const MODELE = process.env.OPENAI_MODEL || "gpt-4o-mini";
+// Sans clé OpenAI payante, on passe par GitHub Models (gratuit) avec le compte GitHub connecté
+function jetonGitHub() {
+  if (process.env.GITHUB_TOKEN) return process.env.GITHUB_TOKEN;
+  try {
+    return require("child_process").execSync("gh auth token", { encoding: "utf8" }).trim();
+  } catch {
+    return "";
+  }
+}
+
+const CLE_OPENAI = process.env.OPENAI_API_KEY;
+const AVEC_OPENAI = CLE_OPENAI && !CLE_OPENAI.startsWith("colle-");
+const CLE = AVEC_OPENAI ? CLE_OPENAI : jetonGitHub();
+const ADRESSE = AVEC_OPENAI
+  ? "https://api.openai.com/v1/chat/completions"
+  : "https://models.github.ai/inference/chat/completions";
+const MODELE = AVEC_OPENAI ? process.env.OPENAI_MODEL || "gpt-4o-mini" : "openai/gpt-4o-mini";
 const TOURS = 3; // nombre d'échanges entre les deux bots par produit
 
 const produits = [
@@ -37,11 +52,12 @@ const cliente =
 
 const analyste =
   "Tu es analyste. À partir d'une discussion entre une experte marketing et une cliente, liste en français : " +
-  "1) les 3 à 5 points forts du produit, 2) les 2 à 3 objections à traiter, 3) une phrase d'accroche pour le site. " +
-  "Réponds en Markdown, court et concret.";
+  "1) les 5 points les plus attirants pour donner envie d'acheter, 2) les 3 objections à traiter et la réponse à chacune, " +
+  "3) l'argument principal pour le Maroc, le Golfe et l'Europe, 4) 3 phrases d'accroche en français et en arabe. " +
+  "Aucune promesse médicale. Réponds en Markdown, court et concret.";
 
 async function demander(systeme, messages) {
-  const reponse = await fetch("https://api.openai.com/v1/chat/completions", {
+  const reponse = await fetch(ADRESSE, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${CLE}` },
     body: JSON.stringify({ model: MODELE, messages: [{ role: "system", content: systeme }, ...messages] }),
@@ -86,9 +102,10 @@ async function debattre(produit) {
 
 async function main() {
   if (!CLE) {
-    console.error("Clé OpenAI manquante. Crée le fichier bots/.env avec la ligne : OPENAI_API_KEY=sk-...");
+    console.error("Aucun accès : connecte-toi avec « gh auth login », ou mets GITHUB_TOKEN=... dans bots/.env");
     process.exit(1);
   }
+  console.log(AVEC_OPENAI ? "Connexion : OpenAI" : "Connexion : GitHub Models (gratuit)");
 
   // node debat.js ghassoul  → analyse seulement les produits dont le nom contient "ghassoul"
   const filtre = (process.argv[2] || "").toLowerCase();
