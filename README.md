@@ -2,9 +2,14 @@
 
 Page web de présentation de produits cosmétiques : catalogue, filtres par catégorie et panier.
 
-## Ouvrir le site
+## Voir le site
 
-Double-clique sur `index.html` pour l'ouvrir dans ton navigateur.
+- En ligne : https://ventehim25.github.io/produit-cosmetique-/
+- Sur l'ordinateur : double-clique sur `index.html`
+
+## Sauvegarder
+
+Double-clique sur `sauvegarder.bat` : tout est envoyé sur GitHub et le site en ligne se met à jour en 1 minute environ.
 
 ## Modifier les produits
 
