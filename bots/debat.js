@@ -19,13 +19,13 @@ const TOURS = 3; // nombre d'échanges entre les deux bots par produit
 
 const produits = [
   { nom: "Sérum Éclat Vitamine C", prix: "24,90 €", description: "Sérum visage à la vitamine C, illumine le teint et atténue les taches." },
-  { nom: "Rouge à Lèvres Velours", prix: "15,90 €", description: "Rouge à lèvres mat, tenue longue durée." },
+  { nom: "Ghassoul aux Herbes", prix: "11,90 €", description: "Argile marocaine (rhassoul) aux plantes, 250 g, pour nettoyer la peau et les cheveux au hammam." },
   { nom: "Eau de Parfum Fleur d'Oranger", prix: "49,00 €", description: "Parfum floral frais et élégant." },
 ];
 
 const contexte =
   "Marque : Beauté Éclat. Marchés visés : Maroc d'abord, puis pays du Golfe (Arabie saoudite, Émirats), puis Europe. " +
-  "Concurrents : Garnier, The Ordinary, La Roche-Posay, Maybelline, Atelier Cologne, Le Labo.";
+  "Concurrents : Garnier, The Ordinary, La Roche-Posay, Najel, Aroma-Zone, Atelier Cologne, Le Labo.";
 
 const vendeuse =
   "Tu es Sara, experte marketing en cosmétiques. Tu défends le produit avec des arguments concrets et honnêtes " +

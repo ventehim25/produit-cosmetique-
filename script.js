@@ -1,13 +1,13 @@
 // Liste des produits (modifie ici pour ajouter tes propres produits)
 const produits = [
   { id: 1, nom: "Sérum Éclat Vitamine C", categorie: "soin", prix: 24.9, icone: "🍊", couleur: "#fff1e0", description: "Illumine le teint et atténue les taches." },
-  { id: 2, nom: "Rouge à Lèvres Velours", categorie: "maquillage", prix: 15.9, icone: "💄", couleur: "#fbe0e6", description: "Fini mat, tenue longue durée." },
+  { id: 4, nom: "Ghassoul aux Herbes", categorie: "hammam", prix: 11.9, icone: "🌿", couleur: "#efe6d8", description: "Argile marocaine aux plantes (250 g) : nettoie la peau et les cheveux en douceur. Aussi appelé rhassoul, غاسول, Lavaerde." },
   { id: 3, nom: "Eau de Parfum Fleur d'Oranger", categorie: "parfum", prix: 49.0, icone: "🌸", couleur: "#fdf0f5", description: "Note florale fraîche et élégante." },
 ];
 
 const nomsCategories = {
   soin: "Soins visage",
-  maquillage: "Maquillage",
+  hammam: "Hammam",
   parfum: "Parfums",
 };
 
