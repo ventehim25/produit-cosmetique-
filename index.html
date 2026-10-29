@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauté Éclat — Produits cosmétiques</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="entete">
+    <h1 class="logo">Beauté Éclat</h1>
+    <button class="bouton-panier" id="ouvrirPanier">
+      Panier <span class="compteur" id="compteur">0</span>
+    </button>
+  </header>
+
+  <section class="banniere">
+    <h2>Nos produits cosmétiques</h2>
+    <p>Soins, maquillage et parfums sélectionnés pour vous.</p>
+  </section>
+
+  <main class="contenu">
+    <div class="filtres" id="filtres">
+      <button class="filtre actif" data-categorie="tous">Tous</button>
+      <button class="filtre" data-categorie="soin">Soins visage</button>
+      <button class="filtre" data-categorie="maquillage">Maquillage</button>
+      <button class="filtre" data-categorie="parfum">Parfums</button>
+      <button class="filtre" data-categorie="corps">Corps &amp; cheveux</button>
+    </div>
+
+    <div class="grille" id="grille"></div>
+  </main>
+
+  <aside class="panier" id="panier">
+    <div class="panier-entete">
+      <h3>Mon panier</h3>
+      <button class="fermer" id="fermerPanier" aria-label="Fermer">×</button>
+    </div>
+    <ul class="panier-liste" id="panierListe"></ul>
+    <div class="panier-pied">
+      <p class="total">Total : <strong id="total">0,00 €</strong></p>
+      <button class="commander" id="commander">Commander</button>
+    </div>
+  </aside>
+  <div class="voile" id="voile"></div>
+
+  <footer class="pied">
+    <p>© 2026 Beauté Éclat — Tous droits réservés</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

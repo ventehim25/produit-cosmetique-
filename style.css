@@ -1,0 +1,301 @@
+:root {
+  --rose: #c8577a;
+  --rose-clair: #fbeef2;
+  --texte: #2b2024;
+  --gris: #7a6d72;
+  --fond: #fffafb;
+  --blanc: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--fond);
+  color: var(--texte);
+}
+
+/* En-tête */
+.entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--blanc);
+  border-bottom: 1px solid #f0dde3;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: var(--rose);
+  letter-spacing: 1px;
+}
+
+.bouton-panier {
+  background: var(--rose);
+  color: var(--blanc);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.compteur {
+  background: var(--blanc);
+  color: var(--rose);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-left: 6px;
+  font-weight: bold;
+}
+
+/* Bannière */
+.banniere {
+  text-align: center;
+  padding: 48px 16px;
+  background: linear-gradient(135deg, #fbe3ea, #f6eaf7);
+}
+
+.banniere h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.banniere p {
+  color: var(--gris);
+}
+
+/* Filtres */
+.contenu {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.filtre {
+  border: 1px solid var(--rose);
+  background: var(--blanc);
+  color: var(--rose);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.filtre.actif,
+.filtre:hover {
+  background: var(--rose);
+  color: var(--blanc);
+}
+
+/* Grille de produits */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.carte {
+  background: var(--blanc);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(200, 87, 122, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.carte:hover {
+  transform: translateY(-4px);
+}
+
+.carte-image {
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+}
+
+.carte-corps {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.carte-categorie {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--rose);
+  letter-spacing: 1px;
+}
+
+.carte-nom {
+  font-size: 1.05rem;
+}
+
+.carte-description {
+  font-size: 0.9rem;
+  color: var(--gris);
+  flex: 1;
+}
+
+.carte-bas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.prix {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.ajouter {
+  background: var(--rose-clair);
+  color: var(--rose);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ajouter:hover {
+  background: var(--rose);
+  color: var(--blanc);
+}
+
+/* Panier */
+.panier {
+  position: fixed;
+  top: 0;
+  right: -380px;
+  width: 360px;
+  max-width: 100%;
+  height: 100%;
+  background: var(--blanc);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s;
+  z-index: 30;
+}
+
+.panier.ouvert {
+  right: 0;
+}
+
+.panier-entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border-bottom: 1px solid #f0dde3;
+}
+
+.fermer {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--gris);
+}
+
+.panier-liste {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 18px;
+}
+
+.panier-liste li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f7eaee;
+  gap: 8px;
+}
+
+.quantite button {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #e6cfd6;
+  background: var(--blanc);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.quantite span {
+  display: inline-block;
+  min-width: 22px;
+  text-align: center;
+}
+
+.vide {
+  color: var(--gris);
+  text-align: center;
+  margin-top: 30px;
+  border: none !important;
+  justify-content: center !important;
+}
+
+.panier-pied {
+  padding: 18px;
+  border-top: 1px solid #f0dde3;
+}
+
+.total {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.commander {
+  width: 100%;
+  background: var(--rose);
+  color: var(--blanc);
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.voile {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+  z-index: 20;
+}
+
+.voile.visible {
+  display: block;
+}
+
+/* Pied de page */
+.pied {
+  text-align: center;
+  padding: 24px;
+  color: var(--gris);
+  font-size: 0.9rem;
+}
