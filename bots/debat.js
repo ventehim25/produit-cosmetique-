@@ -18,8 +18,8 @@ const MODELE = process.env.OPENAI_MODEL || "gpt-4o-mini";
 const TOURS = 3; // nombre d'échanges entre les deux bots par produit
 
 const produits = [
-  { nom: "Sérum Éclat Vitamine C", prix: "24,90 €", description: "Sérum visage à la vitamine C, illumine le teint et atténue les taches." },
   { nom: "Ghassoul aux Herbes", prix: "11,90 €", description: "Argile marocaine (rhassoul) aux plantes, 250 g, pour nettoyer la peau et les cheveux au hammam." },
+  { nom: "Sérum Éclat Vitamine C", prix: "24,90 €", description: "Sérum visage à la vitamine C, illumine le teint et atténue les taches." },
   { nom: "Eau de Parfum Fleur d'Oranger", prix: "49,00 €", description: "Parfum floral frais et élégant." },
 ];
 
@@ -90,8 +90,16 @@ async function main() {
     process.exit(1);
   }
 
+  // node debat.js ghassoul  → analyse seulement les produits dont le nom contient "ghassoul"
+  const filtre = (process.argv[2] || "").toLowerCase();
+  const choisis = produits.filter((p) => p.nom.toLowerCase().includes(filtre));
+  if (choisis.length === 0) {
+    console.error(`Aucun produit ne correspond à "${filtre}".`);
+    process.exit(1);
+  }
+
   let rapport = `# Points forts des produits — ${new Date().toLocaleDateString("fr-FR")}\n\n`;
-  for (const produit of produits) rapport += (await debattre(produit)) + "\n";
+  for (const produit of choisis) rapport += (await debattre(produit)) + "\n";
 
   const sortie = path.join(__dirname, "points-forts.md");
   fs.writeFileSync(sortie, rapport, "utf8");
