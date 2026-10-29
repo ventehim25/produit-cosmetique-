@@ -2,3 +2,5 @@
 .claude/
 Thumbs.db
 desktop.ini
+.env
+bots/points-forts.md
