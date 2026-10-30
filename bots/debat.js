@@ -62,7 +62,13 @@ async function demander(systeme, messages) {
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${CLE}` },
     body: JSON.stringify({ model: MODELE, messages: [{ role: "system", content: systeme }, ...messages] }),
   });
-  const donnees = await reponse.json();
+  const texte = await reponse.text();
+  let donnees;
+  try {
+    donnees = JSON.parse(texte);
+  } catch {
+    throw new Error(`Réponse inattendue du serveur (connexion bloquée ?) : ${texte.slice(0, 100)}`);
+  }
   if (!reponse.ok) throw new Error(donnees.error?.message || `Erreur HTTP ${reponse.status}`);
   return donnees.choices[0].message.content.trim();
 }
