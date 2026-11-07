@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NAYRA Prospection</title>
+  <link rel="icon" href="etoile.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="etoile.svg" alt="" width="40" height="40">
+      <div>
+        <h1>NAYRA <span lang="ar">نيّرة</span></h1>
+        <p>Prospection des revendeurs · savon noir &amp; ghassoul</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span id="maj" class="muted"></span>
+      <button id="btn-robot" class="btn">Mettre à jour</button>
+      <button id="btn-export" class="btn btn-main">Exporter (Excel)</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="kpis" class="kpis" aria-label="Chiffres clés"></section>
+
+    <section class="filtres" aria-label="Filtres">
+      <label class="f-search">Recherche<input id="f-q" type="search" placeholder="Nom, ville, téléphone…"></label>
+      <label>Ville<select id="f-ville"></select></label>
+      <label>Type de commerce<select id="f-type"></select></label>
+      <label>Priorité<select id="f-classe">
+        <option value="">Toutes</option>
+        <option value="A">A seulement (8 à 10)</option>
+        <option value="AB">A et B (6 et plus)</option>
+        <option value="ABC">A, B et C (4 et plus)</option>
+      </select></label>
+      <label>Contact<select id="f-contact">
+        <option value="">Tous</option>
+        <option value="tel">Avec téléphone</option>
+        <option value="wa">Avec WhatsApp</option>
+        <option value="email">Avec e-mail</option>
+        <option value="nom">Avec un nom</option>
+      </select></label>
+      <label>Suivi<select id="f-statut"></select></label>
+      <button id="f-reset" class="btn btn-ghost">Tout effacer</button>
+    </section>
+
+    <nav class="onglets" role="tablist">
+      <button role="tab" data-tab="carte">Carte</button>
+      <button role="tab" data-tab="liste">Liste</button>
+      <button role="tab" data-tab="relances">Relances <span id="nb-relances" class="pastille" hidden></span></button>
+      <button role="tab" data-tab="stats">Statistiques</button>
+      <span id="compte" class="muted compte"></span>
+    </nav>
+
+    <section id="tab-carte" class="tab">
+      <div id="carte"></div>
+      <div class="legende" id="legende"></div>
+    </section>
+    <section id="tab-liste" class="tab"><div id="liste"></div></section>
+    <section id="tab-relances" class="tab"><div id="relances"></div></section>
+    <section id="tab-stats" class="tab"><div id="stats" class="stats"></div></section>
+
+    <div id="vide" class="vide" hidden></div>
+  </main>
+
+  <aside id="fiche" class="fiche" hidden aria-label="Fiche du commerce"></aside>
+  <div id="voile" class="voile" hidden></div>
+  <div id="bulle" class="bulle" hidden></div>
+
+  <footer class="pied">
+    Données © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a>, licence ODbL. À vérifier sur le terrain avant de démarcher.
+    Loi 09-08 : pas d'envoi en masse, un message à la fois, et on respecte toujours un « STOP ».
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
