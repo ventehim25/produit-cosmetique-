@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fiche revendeur NAYRA</title>
+  <link rel="icon" href="etoile.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@500;700;800&family=Jost:wght@400;500;600&family=Marcellus&display=swap">
+  <style>
+    /* Feuille A4 imprimée, look papier unique (même rendu en clair et en sombre) aux couleurs NAYRA */
+    :root {
+      color-scheme: light;
+      --terracotta: #9C4A30;
+      --terracotta-fonce: #6E2B19;
+      --sable: #F3E6D6;
+      --papier: #FFFCF7;
+      --or: #C9A24A;
+      --or-clair: #E2C178;
+      --cacao: #3B2418;
+      --argile: #E7D3BC;
+      --encre: #2B1A12;
+      --encre-2: #6B5444;
+      --trait: #E6D8C6;
+      --fond: #EFE6DA;
+      --logo: "Marcellus", Georgia, serif;
+      --ar-titre: "Amiri", "Noto Naskh Arabic", serif;
+      --ar: "Cairo", "Noto Sans Arabic", Tahoma, sans-serif;
+      --texte: "Jost", "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--fond); color: var(--encre); font: 15px/1.45 var(--texte); padding: 20px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+    [lang="ar"] { font-family: var(--ar); direction: rtl; }
+
+    /* Barre de réglages (écran seulement) */
+    .reglages { max-width: 210mm; margin: 0 auto 16px; background: #fff; border: 1px solid var(--trait); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; }
+    .reglages h2 { margin: 0; font-size: 15px; }
+    .reglages .champs { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+    .reglages label { display: flex; flex-direction: column; gap: 3px; font-size: 12.5px; color: var(--encre-2); }
+    .reglages input { font: inherit; padding: 7px 9px; border: 1px solid var(--trait); border-radius: 8px; width: 9.5em; background: var(--papier); color: var(--encre); }
+    .reglages input.court { width: 5.5em; }
+    .reglages input:focus { outline: 2px solid var(--terracotta); outline-offset: 0; }
+    .reglages p { margin: 0; font-size: 12.5px; color: var(--encre-2); }
+    .btn { font: inherit; font-weight: 600; cursor: pointer; border-radius: 10px; padding: 8px 16px; border: 1px solid var(--terracotta); background: var(--terracotta); color: #fff; text-decoration: none; }
+    .btn.leger { background: transparent; color: var(--terracotta); }
+    .btn:focus-visible { outline: 3px solid var(--or); outline-offset: 2px; }
+
+    /* La feuille */
+    .feuille { max-width: 210mm; margin: 0 auto; background: var(--papier); box-shadow: 0 10px 40px rgba(59, 36, 24, .16); display: flex; flex-direction: column; }
+    .bandeau { position: relative; overflow: hidden; background: var(--terracotta); color: var(--sable); padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .bandeau svg.motif { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .marque { position: relative; display: flex; align-items: center; gap: 14px; }
+    .marque > div { display: grid; gap: 6px; }
+    .marque .nom { font-family: var(--logo); font-size: 40px; letter-spacing: .2em; line-height: 1; }
+    .marque .nom-ar { font-family: var(--ar-titre); font-weight: 700; font-size: 26px; color: var(--or-clair); line-height: 1.1; }
+    .devise { position: relative; text-align: end; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; display: grid; gap: 2px; }
+    .devise [lang="ar"] { font-family: var(--ar-titre); font-size: 20px; letter-spacing: 0; text-transform: none; color: var(--or-clair); }
+
+    .corps { padding: 22px 28px 18px; display: grid; gap: 18px; }
+    .accroche { display: grid; gap: 4px; }
+    .accroche h1 { margin: 0; font-family: var(--logo); font-weight: 400; font-size: 27px; line-height: 1.2; color: var(--terracotta-fonce); text-wrap: balance; }
+    .accroche .ar { font-size: 21px; font-weight: 700; color: var(--cacao); }
+    .accroche p { margin: 0; color: var(--encre-2); }
+
+    .etiquette { font-size: 11.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--terracotta); margin: 0 0 6px; display: flex; justify-content: space-between; gap: 10px; }
+    .etiquette [lang="ar"] { letter-spacing: 0; font-size: 14px; }
+
+    .tableau { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th { font-size: 12px; font-weight: 500; color: var(--encre-2); text-align: end; padding: 6px 8px; border-bottom: 1.5px solid var(--encre); vertical-align: bottom; }
+    th:first-child { text-align: start; }
+    th span[lang="ar"] { display: block; font-size: 12.5px; text-align: right; }
+    th:first-child span[lang="ar"] { text-align: left; }
+    /* Les lignes en arabe sous un texte français gardent le même bord (gauche) */
+    .accroche [lang="ar"], .atout [lang="ar"], .etapes [lang="ar"], .contact [lang="ar"], .carte [lang="ar"] { text-align: left; }
+    td { padding: 9px 8px; border-bottom: 1px solid var(--trait); text-align: end; white-space: nowrap; }
+    td:first-child { text-align: start; white-space: normal; }
+    .produit { display: flex; align-items: center; gap: 10px; }
+    .pastille { width: 26px; height: 34px; border-radius: 5px; flex: none; border-top: 4px solid var(--or); }
+    .pastille.savon { background: var(--cacao); }
+    .pastille.ghassoul { background: var(--argile); }
+    .pastille.masque { background: linear-gradient(var(--argile), #D7BEA2); }
+    .pastille.kit { background: linear-gradient(90deg, var(--cacao) 50%, var(--argile) 50%); }
+    .produit b { display: block; font-weight: 600; }
+    .produit [lang="ar"] { font-size: 14px; color: var(--encre-2); }
+    td.gain { font-weight: 700; color: var(--terracotta); }
+    td.prix-rev { font-weight: 600; }
+
+    .carte { background: var(--cacao); color: var(--sable); border-radius: 14px; padding: 16px 20px; display: grid; grid-template-columns: 1fr auto; gap: 12px 20px; align-items: center; }
+    .carte h2 { margin: 0; font-family: var(--logo); font-weight: 400; font-size: 21px; color: #fff; }
+    .carte .ar { font-size: 16px; font-weight: 700; color: var(--or-clair); }
+    .calcul { display: flex; align-items: stretch; gap: 8px; text-align: center; }
+    .calcul div { background: rgba(243, 230, 214, .1); border-radius: 10px; padding: 8px 12px; min-width: 88px; }
+    .calcul small { display: block; font-size: 11.5px; color: var(--argile); }
+    .calcul strong { display: block; font-size: 22px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+    .calcul .ar-mini { font-size: 12px; color: var(--argile); }
+    .calcul .gagne { background: var(--or); color: var(--cacao); }
+    .calcul .gagne small, .calcul .gagne .ar-mini { color: var(--cacao); }
+
+    .atouts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .atout { border-top: 2px solid var(--or); padding-top: 8px; display: grid; gap: 3px; align-content: start; }
+    .atout b { font-size: 15px; }
+    .atout span { font-size: 13.5px; color: var(--encre-2); }
+    .atout [lang="ar"] { font-size: 14px; font-weight: 700; color: var(--cacao); }
+
+    .etapes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; counter-reset: etape; }
+    .etapes li { counter-increment: etape; display: grid; grid-template-columns: 30px 1fr; gap: 2px 10px; align-items: start; }
+    .etapes li::before { content: counter(etape); grid-row: span 2; width: 30px; height: 30px; border-radius: 50%; background: var(--terracotta); color: #fff; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .etapes b { font-size: 14.5px; }
+    .etapes [lang="ar"] { font-size: 13.5px; color: var(--encre-2); }
+
+    .contact { margin-top: auto; background: var(--sable); padding: 16px 28px; display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; }
+    .qr { width: 92px; height: 92px; background: #fff; padding: 6px; border-radius: 8px; }
+    .qr svg { display: block; width: 100%; height: 100%; }
+    .qr.vide { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11px; color: var(--encre-2); border: 1.5px dashed var(--trait); }
+    .contact .titre { font-family: var(--logo); font-size: 19px; color: var(--terracotta-fonce); }
+    .contact .ar { font-size: 16px; font-weight: 700; color: var(--cacao); }
+    .contact .numero { font-size: 26px; font-weight: 600; letter-spacing: .04em; color: var(--encre); font-variant-numeric: tabular-nums; }
+    .contact .mentions { font-size: 11.5px; color: var(--encre-2); text-align: end; max-width: 15em; }
+    .etoile-pied { width: 52px; height: 52px; }
+
+    @media (max-width: 640px) {
+      .bandeau, .corps, .contact { padding-inline: 18px; }
+      .marque .nom { font-size: 30px; }
+      .accroche h1 { font-size: 22px; }
+      .carte { grid-template-columns: 1fr; }
+      .calcul div { min-width: 0; flex: 1; }
+      .atouts, .etapes { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: auto 1fr; }
+      .contact .mentions { grid-column: 1 / -1; text-align: start; max-width: none; }
+    }
+
+    @page { size: A4; margin: 0; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .reglages { display: none; }
+      .feuille { max-width: none; width: 210mm; height: 297mm; overflow: hidden; box-shadow: none; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <section class="reglages" aria-label="Réglages de la fiche">
+    <h2>Avant d'imprimer : ton numéro et tes prix revendeur</h2>
+    <div class="champs">
+      <label for="r-tel">Ton numéro WhatsApp<input id="r-tel" inputmode="tel" placeholder="06 12 34 56 78"></label>
+      <label for="r-p3">Prix revendeur du sachet à 3 DH<input id="r-p3" class="court" inputmode="decimal" value="2"></label>
+      <label for="r-p5">Prix revendeur du sachet à 5 DH<input id="r-p5" class="court" inputmode="decimal" value="3,50"></label>
+      <label for="r-p10">Prix revendeur du kit à 10 DH<input id="r-p10" class="court" inputmode="decimal" value="7"></label>
+      <button class="btn" id="imprimer" type="button">Imprimer ou enregistrer en PDF</button>
+      <a class="btn leger" href="/">Retour à la prospection</a>
+    </div>
+    <p>Les prix revendeur sont ceux proposés avec ChatGPT : vérifie-les avec tes vrais coûts (sachet, étiquette, transport) avant d'imprimer. Tout se met à jour sur la fiche.</p>
+  </section>
+
+  <article class="feuille">
+    <header class="bandeau">
+      <svg class="motif" aria-hidden="true"><defs><pattern id="zellige" width="48" height="48" patternUnits="userSpaceOnUse"><g fill="none" stroke="#F3E6D6" stroke-opacity="0.14" stroke-width="1.2"><rect x="14" y="14" width="20" height="20"/><rect x="14" y="14" width="20" height="20" transform="rotate(45 24 24)"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#zellige)"/></svg>
+      <div class="marque">
+        <svg width="58" height="58" viewBox="0 0 80 80" aria-hidden="true" fill="none"><rect x="18" y="18" width="44" height="44" stroke="#E2C178" stroke-width="2.5"/><rect x="18" y="18" width="44" height="44" stroke="#E2C178" stroke-width="2.5" transform="rotate(45 40 40)"/><circle cx="40" cy="40" r="7" fill="#E2C178"/></svg>
+        <div>
+          <div class="nom">NAYRA</div>
+          <div class="nom-ar" lang="ar">نيّرة</div>
+        </div>
+      </div>
+      <div class="devise">
+        <span lang="ar">طقوس الحمّام المغربي</span>
+        <span>Rituels du hammam marocain</span>
+      </div>
+    </header>
+
+    <div class="corps">
+      <section class="accroche">
+        <h1>Savon noir et ghassoul en petites doses, à 3, 5 et 10 DH</h1>
+        <div class="ar" lang="ar">الصابون البلدي والغاسول فساشيات صغار، بـ 3 و5 و10 دراهم</div>
+        <p>Des produits du hammam que vos clients rachètent chaque semaine.</p>
+      </section>
+
+      <section>
+        <p class="etiquette"><span>La gamme et vos prix</span><span lang="ar">المنتوجات والأثمنة ديالك</span></p>
+        <div class="tableau">
+          <table>
+            <thead>
+              <tr>
+                <th>Produit <span lang="ar">المنتوج</span></th>
+                <th>Format <span lang="ar">الوزن</span></th>
+                <th>Prix client <span lang="ar">ثمن البيع</span></th>
+                <th>Votre prix <span lang="ar">ثمن التاجر</span></th>
+                <th>Vous gagnez <span lang="ar">الربح ديالك</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="produit"><i class="pastille savon"></i><div><b>Savon noir beldi</b><span lang="ar">صابون بلدي</span></div></div></td>
+                <td>sachet 30 g</td><td>5 DH</td><td class="prix-rev" data-prix="p5"></td><td class="gain" data-gain="5,p5"></td>
+              </tr>
+              <tr>
+                <td><div class="produit"><i class="pastille ghassoul"></i><div><b>Ghassoul aux herbes</b><span lang="ar">غاسول بالأعشاب</span></div></div></td>
+                <td>sachet 30 g</td><td>5 DH</td><td class="prix-rev" data-prix="p5"></td><td class="gain" data-gain="5,p5"></td>
+              </tr>
+              <tr>
+                <td><div class="produit"><i class="pastille masque"></i><div><b>Masque visage au ghassoul</b><span lang="ar">ماسك الغاسول للوجه</span></div></div></td>
+                <td>sachet 15 g</td><td>3 DH</td><td class="prix-rev" data-prix="p3"></td><td class="gain" data-gain="3,p3"></td>
+              </tr>
+              <tr>
+                <td><div class="produit"><i class="pastille kit"></i><div><b>Kit hammam (savon + ghassoul)</b><span lang="ar">كيت الحمّام: صابون + غاسول</span></div></div></td>
+                <td>kit</td><td>10 DH</td><td class="prix-rev" data-prix="p10"></td><td class="gain" data-gain="10,p10"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="carte" aria-label="Carte présentoir">
+        <div>
+          <h2>La carte présentoir : 10 sachets à 5 DH</h2>
+          <div class="ar" lang="ar">بطاقة العرض: 10 ساشيات بـ 5 دراهم، فوق الكونطوار</div>
+        </div>
+        <div class="calcul">
+          <div><small>Vous payez</small><strong id="c-paye"></strong><span class="ar-mini" lang="ar">كتخلص</span></div>
+          <div><small>Vous vendez</small><strong>50 DH</strong><span class="ar-mini" lang="ar">كتبيع</span></div>
+          <div class="gagne"><small>Vous gagnez</small><strong id="c-gain"></strong><span class="ar-mini" lang="ar">كتربح</span></div>
+        </div>
+      </section>
+
+      <section class="atouts" aria-label="Pourquoi NAYRA">
+        <div class="atout"><b>Petit prix, achat immédiat</b><span>À 3 ou 5 DH, le client prend sans hésiter.</span><span lang="ar">ثمن صغير، الزبون كيشري بلا ما يفكر</span></div>
+        <div class="atout"><b>Le client revient</b><span>Le hammam, c'est chaque semaine : il rachète.</span><span lang="ar">الحمّام كل سيمانة، والزبون كيرجع</span></div>
+        <div class="atout"><b>Peu de place</b><span>Une petite carte de 10 sachets sur le comptoir.</span><span lang="ar">بطاقة صغيرة فوق الكونطوار</span></div>
+      </section>
+
+      <section>
+        <p class="etiquette"><span>Comment ça marche</span><span lang="ar">كيفاش كنخدمو</span></p>
+        <ol class="etapes">
+          <li><b>Testez nos échantillons gratuits</b><span lang="ar">جرّب العينات بلاش</span></li>
+          <li><b>Commandez sur WhatsApp</b><span lang="ar">طلب فالواتساب</span></li>
+          <li><b>Réassort dès que la carte est vide</b><span lang="ar">كنعمّرو ليك ملي تخوا البطاقة</span></li>
+        </ol>
+      </section>
+    </div>
+
+    <footer class="contact">
+      <div class="qr vide" id="qr">Le QR WhatsApp apparaît avec ton numéro</div>
+      <div>
+        <div class="titre">Commandez sur WhatsApp</div>
+        <div class="ar" lang="ar">طلب فالواتساب</div>
+        <div class="numero" id="numero">06 __ __ __ __</div>
+      </div>
+      <div class="mentions">Produits marocains traditionnels.<br>Prix revendeur valables au <span id="date"></span>.</div>
+    </footer>
+  </article>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script>
+    "use strict";
+    const $ = (s) => document.querySelector(s);
+    const champs = ["tel", "p3", "p5", "p10"];
+    const lire = (k) => { try { return localStorage.getItem("nayra:fiche:" + k); } catch { return null; } };
+    const ecrire = (k, v) => { try { localStorage.setItem("nayra:fiche:" + k, v); } catch { /* navigation privée */ } };
+    const nombre = (s) => parseFloat(String(s).replace(",", ".")) || 0;
+    const dh = (n) => (Math.round(n * 100) / 100).toLocaleString("fr-FR", { minimumFractionDigits: n % 1 ? 2 : 0 }) + " DH";
+
+    for (const k of champs) { const v = lire(k); if (v !== null) $("#r-" + k).value = v; }
+
+    function majFiche() {
+      const prix = { p3: nombre($("#r-p3").value), p5: nombre($("#r-p5").value), p10: nombre($("#r-p10").value) };
+      document.querySelectorAll("[data-prix]").forEach((td) => (td.textContent = dh(prix[td.dataset.prix])));
+      document.querySelectorAll("[data-gain]").forEach((td) => {
+        const [public_, cle] = td.dataset.gain.split(",");
+        td.textContent = "+ " + dh(+public_ - prix[cle]);
+      });
+      $("#c-paye").textContent = dh(10 * prix.p5);
+      $("#c-gain").textContent = dh(50 - 10 * prix.p5);
+
+      // Numéro marocain -> 06 12 34 56 78 + QR vers WhatsApp
+      let d = $("#r-tel").value.replace(/\D/g, "");
+      if (d.startsWith("212")) d = d.slice(3);
+      if (d.startsWith("0")) d = d.slice(1);
+      const qr = $("#qr");
+      if (d.length === 9) {
+        $("#numero").textContent = "0" + d.replace(/(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5");
+        const code = qrcode(0, "M");
+        code.addData(`https://wa.me/212${d}?text=${encodeURIComponent("Salam, je veux commander NAYRA / بغيت نطلب نيّرة")}`);
+        code.make();
+        qr.innerHTML = code.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+        qr.classList.remove("vide");
+      } else {
+        $("#numero").textContent = "06 __ __ __ __";
+        qr.textContent = "Le QR WhatsApp apparaît avec ton numéro";
+        qr.classList.add("vide");
+      }
+    }
+
+    for (const k of champs) $("#r-" + k).addEventListener("input", (e) => { ecrire(k, e.target.value); majFiche(); });
+    $("#imprimer").addEventListener("click", () => window.print());
+    $("#date").textContent = new Date().toLocaleDateString("fr-FR");
+    majFiche();
+  </script>
+</body>
+</html>

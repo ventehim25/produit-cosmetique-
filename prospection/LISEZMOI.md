@@ -9,6 +9,7 @@ Robot + application pour trouver les commerces marocains qui pourraient revendre
 | Voir les résultats | Double-clic sur **Ouvrir NAYRA Prospection.bat** : la page s'ouvre dans Chromium (http://localhost:8787). Une petite fenêtre noire réduite doit rester ouverte. |
 | Chercher de nouveaux commerces | Bouton **Mettre à jour** dans la page, ou double-clic sur **Mettre a jour les prospects.bat** (quelques minutes). |
 | Travailler dans Excel | Bouton **Exporter (Excel)** : la liste filtrée, avec mon suivi. |
+| Laisser une fiche au commerçant | Bouton **Fiche revendeur** : feuille A4 en arabe et en français (gamme, prix revendeur, gain, carte présentoir, QR WhatsApp). Je règle mon numéro et mes prix en haut, puis **Imprimer ou enregistrer en PDF**. |
 
 Dans la page :
 - **Carte** : tous les commerces ; cercles foncés et gros = priorité A. Clic = fiche.
